@@ -176,10 +176,31 @@
       box-shadow: 0 22px 50px rgba(0, 0, 0, 0.52);
     }
 
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .hero-photo img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.7);
+    }
+
     .hero-card-title {
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
     }
 
     .hero-card-text {
@@ -368,7 +389,12 @@
         </div>
 
         <div class="hero-actions">
-          <a href="mailto:oscar.daganzo@veldinnetwork.com" class="btn btn-primary" data-i18n="ctaPrimary">
+          <a
+            id="ctaMain"
+            href="mailto:oscar.daganzo@veldinnetwork.com?subject=App%20project%20inquiry"
+            class="btn btn-primary"
+            data-i18n="ctaPrimary"
+          >
             Hablemos de tu app
           </a>
           <a href="#services" class="btn btn-secondary" data-i18n="ctaSecondary">
@@ -378,9 +404,21 @@
       </div>
 
       <div class="hero-card">
-        <div class="hero-card-title" data-i18n="heroCardTitle">
-          Experiencia destacada
+        <div class="hero-card-header">
+          <div class="hero-photo">
+            <!-- Asegúrate de subir este archivo al repo -->
+            <img src="oscar-profile.jpg" alt="Oscar Daganzo" />
+          </div>
+          <div>
+            <div class="hero-card-title" data-i18n="heroCardTitle">
+              Experiencia destacada
+            </div>
+            <div class="hero-card-subtitle" data-i18n="heroCardSubtitle">
+              Fundador de EPE · Mobile Developer
+            </div>
+          </div>
         </div>
+
         <p class="hero-card-text" data-i18n="heroCardText">
           He liderado el desarrollo de <strong>Españoles Por Europa (EPE)</strong>,
           una red social con mapas, chat en tiempo real, clustering de usuarios,
@@ -595,19 +633,26 @@
 
       <div class="contact-grid">
         <div class="card contact-list">
-          <p><strong>Email</strong><br />
+          <p>
+            <strong data-i18n="contactEmailLabel">Email</strong><br />
             <a href="mailto:oscar.daganzo@veldinnetwork.com">
               oscar.daganzo@veldinnetwork.com
             </a>
           </p>
-          <p><strong>Teléfono</strong><br />
+          <p>
+            <strong data-i18n="contactPhoneLabel">Teléfono</strong><br />
             <a href="tel:+34644859837">+34 644 85 98 37</a>
           </p>
-          <p><strong>Ubicación</strong><br />
-            Barcelona, España
+          <p>
+            <strong data-i18n="contactLocationLabel">Ubicación</strong><br />
+            <span data-i18n="contactLocationValue">Barcelona, España</span>
           </p>
-          <p><strong>LinkedIn</strong><br />
-            <a href="https://www.linkedin.com/in/oscar-daganzo-ruiz-4aa449335" target="_blank">
+          <p>
+            <strong data-i18n="contactLinkedinLabel">LinkedIn</strong><br />
+            <a
+              href="https://www.linkedin.com/in/oscar-daganzo-ruiz-4aa449335"
+              target="_blank"
+            >
               linkedin.com/in/oscar-daganzo
             </a>
           </p>
@@ -644,8 +689,9 @@
         ctaPrimary: "Hablemos de tu app",
         ctaSecondary: "Ver servicios",
         heroCardTitle: "Experiencia destacada",
+        heroCardSubtitle: "Fundador de EPE · Mobile Developer",
         heroCardText:
-          "He liderado el desarrollo de <strong>Españoles Por Europa (EPE)</strong>, una red social con mapas, chat en tiempo real, clustering de usuarios, perfiles personalizables y sistema de logros; y he desarrollado <strong>Woodem</strong>, una herramienta profesional para carpintería que genera despieces, cálculos de materiales y presupuestos de forma automática.",
+          "He liderado el desarrollo de <strong>Españoles Por Europa (EPE)</strong>, una red social con mapas, chat en tiempo real, clustering de usuarios, perfiles personalizables y sistema de logros, y he desarrollado <strong>Woodem</strong>, una herramienta profesional para carpintería que genera despieces, cálculos de materiales y presupuestos de forma automática.",
         aboutLabel: "Sobre mí",
         aboutTitle: "Te acompaño desde la idea hasta la publicación",
         aboutBody1:
@@ -719,6 +765,11 @@
           "Colaboración con startups / equity parcial, según encaje.",
         contactLabel: "Contacto",
         contactTitle: "¿Hablamos de tu proyecto?",
+        contactEmailLabel: "Email",
+        contactPhoneLabel: "Teléfono",
+        contactLocationLabel: "Ubicación",
+        contactLinkedinLabel: "LinkedIn",
+        contactLocationValue: "Barcelona, España",
         contactBody:
           "Cuéntame brevemente tu idea, la fase en la que estás y qué necesitas: desarrollo completo, mejora de una app existente o consultoría técnica. A partir de ahí, te propondré la mejor forma de colaborar.",
         contactClosing: "Transformemos tu idea en un producto real."
@@ -735,6 +786,7 @@
         ctaPrimary: "Parlem de la teva app",
         ctaSecondary: "Veure serveis",
         heroCardTitle: "Experiència destacada",
+        heroCardSubtitle: "Fundador d’EPE · Mobile Developer",
         heroCardText:
           "He liderat el desenvolupament de <strong>Españoles Por Europa (EPE)</strong>, una xarxa social amb mapes, xat en temps real, clustering d’usuaris, perfils personalitzables i sistema de logros; i he desenvolupat <strong>Woodem</strong>, una eina professional per a fusteria que genera descomposicions, càlculs de materials i pressupostos de forma automàtica.",
         aboutLabel: "Sobre mi",
@@ -810,6 +862,11 @@
           "Col·laboració amb startups / equity parcial segons encaix.",
         contactLabel: "Contacte",
         contactTitle: "Parlem del teu projecte?",
+        contactEmailLabel: "Email",
+        contactPhoneLabel: "Telèfon",
+        contactLocationLabel: "Ubicació",
+        contactLinkedinLabel: "LinkedIn",
+        contactLocationValue: "Barcelona, Espanya",
         contactBody:
           "Explica’m breument la teva idea, la fase en què estàs i què necessites: desenvolupament complet, millora d’una app existent o consultoria tècnica. A partir d’aquí et proposaré la millor manera de col·laborar.",
         contactClosing: "Transformem la teva idea en un producte real."
@@ -826,6 +883,7 @@
         ctaPrimary: "Let’s talk about your app",
         ctaSecondary: "View services",
         heroCardTitle: "Highlighted experience",
+        heroCardSubtitle: "Founder of EPE · Mobile Developer",
         heroCardText:
           "I led the development of <strong>Españoles Por Europa (EPE)</strong>, a social app with maps, real-time chat, user clustering, customizable profiles and achievements system; and I built <strong>Woodem</strong>, a professional carpentry tool that generates cut lists, material calculations and quotes automatically.",
         aboutLabel: "About me",
@@ -901,6 +959,11 @@
           "Startup collaboration / partial equity when there is a good fit.",
         contactLabel: "Contact",
         contactTitle: "Let’s talk about your project",
+        contactEmailLabel: "Email",
+        contactPhoneLabel: "Phone",
+        contactLocationLabel: "Location",
+        contactLinkedinLabel: "LinkedIn",
+        contactLocationValue: "Barcelona, Spain",
         contactBody:
           "Tell me briefly about your idea, the stage you are in and what you need: full development, improving an existing app or technical consulting. From there, I’ll propose the best way to collaborate.",
         contactClosing: "Let’s turn your idea into a real product."
@@ -930,4 +993,3 @@
   </script>
 </body>
 </html>
-
