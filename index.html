@@ -320,6 +320,33 @@
       text-decoration: underline;
     }
 
+    /* Galería */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .gallery-item {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
     footer {
       text-align: center;
       padding: 22px 12px 28px;
@@ -334,7 +361,8 @@
         grid-template-columns: 1fr;
       }
       .section-grid,
-      .contact-grid {
+      .contact-grid,
+      .gallery-grid {
         grid-template-columns: 1fr;
       }
       .top-bar {
@@ -542,6 +570,41 @@
       </div>
     </section>
 
+    <!-- GALERÍA EPE -->
+    <section id="gallery">
+      <div class="section-label" data-i18n="galleryLabel">Resultados visuales</div>
+      <h2 class="section-title" data-i18n="galleryTitle">
+        Algunas pantallas de Españoles Por Europa
+      </h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="epe-1.jpg" alt="EPE screenshot 1" />
+          <div class="gallery-caption" data-i18n="galleryCaption1">
+            Mapa de Europa con usuarios agrupados por ciudad.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="epe-2.jpg" alt="EPE screenshot 2" />
+          <div class="gallery-caption" data-i18n="galleryCaption2">
+            Perfil personalizable con temas, fondos y medallas.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="epe-3.jpg" alt="EPE screenshot 3" />
+          <div class="gallery-caption" data-i18n="galleryCaption3">
+            Chat en tiempo real con fondos personalizados por conversación.
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="epe-4.jpg" alt="EPE screenshot 4" />
+          <div class="gallery-caption" data-i18n="galleryCaption4">
+            Vista de logros y sistema de medallas dentro de la app.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- SERVICIOS -->
     <section id="services">
       <div class="section-label" data-i18n="servicesLabel">
@@ -635,7 +698,7 @@
         <div class="card contact-list">
           <p>
             <strong data-i18n="contactEmailLabel">Email</strong><br />
-            <a href="mailto:oscar.daganzo@gmail.com">
+            <a id="emailMain" href="mailto:oscar.daganzo@gmail.com">
               oscar.daganzo@gmail.com
             </a>
           </p>
@@ -654,6 +717,16 @@
               target="_blank"
             >
               linkedin.com/in/oscar-daganzo
+            </a>
+          </p>
+          <p style="margin-top:10px;">
+            <a
+              href="Oscar_Daganzo_Portfolio.pdf"
+              class="btn btn-secondary"
+              data-i18n="downloadPortfolio"
+              style="margin-top:6px;"
+            >
+              Descargar portfolio (PDF)
             </a>
           </p>
         </div>
@@ -729,6 +802,15 @@
           "Formulario avanzado de entrada de datos con opciones de baldas, puertas y divisores.",
         woodemFeature3:
           "Generación de PDF con cortes y piezas listo para producción.",
+        galleryLabel: "Resultados visuales",
+        galleryTitle: "Algunas pantallas de Españoles Por Europa",
+        galleryCaption1: "Mapa de Europa con usuarios agrupados por ciudad.",
+        galleryCaption2:
+          "Perfil personalizable con temas, fondos y medallas.",
+        galleryCaption3:
+          "Chat en tiempo real con fondos personalizados por conversación.",
+        galleryCaption4:
+          "Vista de logros y sistema de medallas dentro de la app.",
         servicesLabel: "Servicios profesionales",
         servicesTitle: "Desarrollo de apps y consultoría técnica",
         servicesDevTitle: "Desarrollo de Apps (iOS & Android)",
@@ -772,7 +854,8 @@
         contactLocationValue: "Barcelona, España",
         contactBody:
           "Cuéntame brevemente tu idea, la fase en la que estás y qué necesitas: desarrollo completo, mejora de una app existente o consultoría técnica. A partir de ahí, te propondré la mejor forma de colaborar.",
-        contactClosing: "Transformemos tu idea en un producto real."
+        contactClosing: "Transformemos tu idea en un producto real.",
+        downloadPortfolio: "Descargar portfolio (PDF)"
       },
       ca: {
         pageTitle: "Oscar Daganzo – Desenvolupador Mobile",
@@ -826,6 +909,16 @@
           "Formulari avançat d’entrada de dades amb opcions de prestatges, portes i divisòries.",
         woodemFeature3:
           "Generació de PDF amb talls i peces llest per a producció.",
+        galleryLabel: "Resultats visuals",
+        galleryTitle: "Algunes pantalles d’Españoles Por Europa",
+        galleryCaption1:
+          "Mapa d’Europa amb usuaris agrupats per ciutat.",
+        galleryCaption2:
+          "Perfil personalitzable amb temes, fons i medalles.",
+        galleryCaption3:
+          "Xat en temps real amb fons personalitzats per conversa.",
+        galleryCaption4:
+          "Vista de logros i sistema de medalles dins de l’app.",
         servicesLabel: "Serveis professionals",
         servicesTitle: "Desenvolupament d’apps i consultoria tècnica",
         servicesDevTitle: "Desenvolupament d’Apps (iOS & Android)",
@@ -869,7 +962,8 @@
         contactLocationValue: "Barcelona, Espanya",
         contactBody:
           "Explica’m breument la teva idea, la fase en què estàs i què necessites: desenvolupament complet, millora d’una app existent o consultoria tècnica. A partir d’aquí et proposaré la millor manera de col·laborar.",
-        contactClosing: "Transformem la teva idea en un producte real."
+        contactClosing: "Transformem la teva idea en un producte real.",
+        downloadPortfolio: "Descarregar portfolio (PDF)"
       },
       en: {
         pageTitle: "Oscar Daganzo – Mobile App Developer",
@@ -923,6 +1017,16 @@
           "Advanced input form with shelves, doors and dividers options.",
         woodemFeature3:
           "PDF export with all cuts and pieces ready for production.",
+        galleryLabel: "Visual results",
+        galleryTitle: "A few screens from Españoles Por Europa",
+        galleryCaption1:
+          "Europe map with users clustered by city.",
+        galleryCaption2:
+          "Customizable profile with themes, backgrounds and badges.",
+        galleryCaption3:
+          "Real-time chat with custom backgrounds per conversation.",
+        galleryCaption4:
+          "Achievements and medals view inside the app.",
         servicesLabel: "Professional services",
         servicesTitle: "App development & technical consulting",
         servicesDevTitle: "Mobile App Development (iOS & Android)",
@@ -966,7 +1070,8 @@
         contactLocationValue: "Barcelona, Spain",
         contactBody:
           "Tell me briefly about your idea, the stage you are in and what you need: full development, improving an existing app or technical consulting. From there, I’ll propose the best way to collaborate.",
-        contactClosing: "Let’s turn your idea into a real product."
+        contactClosing: "Let’s turn your idea into a real product.",
+        downloadPortfolio: "Download portfolio (PDF)"
       }
     };
 
@@ -990,6 +1095,27 @@
     // init
     setLanguage("es");
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // refuerzo para los mailto por si el navegador hace cosas raras
+    const cta = document.getElementById("ctaMain");
+    const emailMain = document.getElementById("emailMain");
+
+    if (cta) {
+      cta.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href =
+          "mailto:oscar.daganzo@gmail.com?subject=App%20project%20inquiry";
+      });
+    }
+
+    if (emailMain) {
+      emailMain.addEventListener("click", (e) => {
+        // permite también el comportamiento normal
+        if (!emailMain.href.startsWith("mailto:")) {
+          emailMain.href = "mailto:oscar.daganzo@gmail.com";
+        }
+      });
+    }
   </script>
 </body>
 </html>
