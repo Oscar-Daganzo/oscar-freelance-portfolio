@@ -1,74 +1,933 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oscar Daganzo – Mobile App Developer</title>
+  <title>Oscar Daganzo – Desarrollador Mobile</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background:#0d0d0d; color:#f2f2f2; }
-    header { padding: 60px 20px; text-align: center; background: linear-gradient(135deg,#111,#1f1f1f); }
-    h1 { font-size: 2.4rem; margin-bottom: 10px; }
-    h2 { margin-top: 40px; }
-    p { max-width: 700px; margin: 10px auto; font-size: 1.05rem; line-height: 1.6; }
-    .container { padding: 40px 20px; max-width: 900px; margin: auto; }
-    .skills, .projects, .contact { margin-top: 40px; }
-    .card { background:#1a1a1a; padding:20px; border-radius:12px; margin:20px 0; }
-    a { color:#4db6ff; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    footer { text-align:center; padding:30px; opacity:0.7; font-size:0.9rem; }
+    :root {
+      --bg: #05060a;
+      --card: #12141f;
+      --accent1: #ff2f86;
+      --accent2: #15c3ff;
+      --accent3: #ffc300;
+      --text: #f5f5f5;
+      --muted: #a0a4b8;
+      --border-radius: 18px;
+      --max-width: 1050px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #151a3a 0, #05060a 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 32px 20px 10px;
+    }
+
+    .top-bar {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-role {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .lang-switcher select {
+      background: #050815;
+      border-radius: 999px;
+      border: 1px solid #2d334d;
+      color: var(--text);
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      max-width: var(--max-width);
+      margin: 20px auto 0;
+      padding: 26px 20px 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(10, 224, 255, 0.08);
+      border: 1px solid rgba(21, 195, 255, 0.6);
+      font-size: 0.8rem;
+      color: var(--accent2);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight {
+      color: var(--accent1);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: #05060a;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #353952;
+      color: var(--muted);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top right, #ff2f86 0, #12141f 45%);
+      border-radius: 26px;
+      padding: 22px 20px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.52);
+    }
+
+    .hero-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-text {
+      font-size: 0.9rem;
+      color: #f7f7ff;
+      margin-bottom: 14px;
+    }
+
+    .hero-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(5, 6, 15, 0.3);
+      border: 1px solid rgba(5, 6, 15, 0.45);
+      color: #f5f5f5;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto 40px;
+      padding: 0 20px 40px;
+    }
+
+    section {
+      margin-top: 34px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 18px 18px 16px;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    li::before {
+      content: "• ";
+      color: var(--accent2);
+      margin-right: 4px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .contact-list p {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px 12px 28px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 780px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .section-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
-<header>
-  <h1>Oscar Daganzo</h1>
-  <p>Mobile App Developer · React Native · Firebase · UX/UI</p>
-</header>
-<div class="container">
-  <section class="about">
-    <h2>About Me</h2>
-    <p>
-      I am a freelance mobile developer specialized in building high‑quality iOS/Android apps using
-      <strong>React Native</strong>, <strong>Firebase</strong>, <strong>Firestore</strong>, push notifications, interactive maps,
-      real‑time chat, custom UI and scalable architectures.
-    </p>
-    <p>
-      I am also the founder of <strong>Españoles por Europa (EPE)</strong>, a social app that connects Spanish people living or traveling across Europe.
-    </p>
-  </section>
-
-  <section class="skills">
-    <h2>Core Skills</h2>
-    <div class="card">
-      <p>• React Native (iOS & Android)</p>
-      <p>• Firebase, Firestore, Cloud Functions</p>
-      <p>• Real‑time chat development</p>
-      <p>• Interactive maps & geolocation</p>
-      <p>• UX/UI design & custom components</p>
-      <p>• Performance optimization & scalable architecture</p>
+  <header>
+    <div class="top-bar">
+      <div class="brand">
+        <div class="brand-name">OSCAR DAGANZO</div>
+        <div class="brand-role" data-i18n="brandRole">
+          Desarrollador Mobile · React Native & Firebase
+        </div>
+      </div>
+      <div class="lang-switcher">
+        <span data-i18n="langLabel">Idioma</span>
+        <select id="langSwitcher">
+          <option value="es">Castellano</option>
+          <option value="ca">Català</option>
+          <option value="en">English</option>
+        </select>
+      </div>
     </div>
-  </section>
 
-  <section class="projects">
-    <h2>Featured Project</h2>
-    <div class="card">
-      <h3>Españoles por Europa (EPE)</h3>
-      <p>A community app for Spanish travelers and expats across Europe.</p>
-      <p><strong>Features:</strong> profiles, customizable themes, real‑time chat, city clustering, maps, authentication, achievements/medals.</p>
-      <p><em>Available on Android · iOS version coming soon</em></p>
+    <div class="hero">
+      <div>
+        <div class="badge" data-i18n="badge">
+          Transformo ideas en productos reales
+        </div>
+        <h1 class="hero-title">
+          <span data-i18n="heroTitle1">Desarrollador</span>
+          <span class="hero-highlight" data-i18n="heroTitle2">
+            Mobile
+          </span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          Freelance especializado en React Native y Firebase. Te ayudo a pasar
+          de idea a app real en iOS y Android, con foco en producto, experiencia
+          de usuario y escalabilidad.
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag">React Native</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Firebase & Firestore</span>
+          <span class="tag">Maps & Geolocation</span>
+          <span class="tag">Real-time Chat</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="mailto:oscar.daganzo@veldinnetwork.com" class="btn btn-primary" data-i18n="ctaPrimary">
+            Hablemos de tu app
+          </a>
+          <a href="#services" class="btn btn-secondary" data-i18n="ctaSecondary">
+            Ver servicios
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-title" data-i18n="heroCardTitle">
+          Experiencia destacada
+        </div>
+        <p class="hero-card-text" data-i18n="heroCardText">
+          He liderado el desarrollo de <strong>Españoles Por Europa (EPE)</strong>,
+          una red social con mapas, chat en tiempo real, clustering de usuarios,
+          perfiles personalizables y sistema de logros, y he desarrollado
+          <strong>Woodem</strong>, una herramienta profesional para carpintería que
+          genera despieces, cálculos de materiales y presupuestos de forma automática.
+        </p>
+        <div class="hero-chip-row">
+          <span class="chip">EPE – Social App · Maps · Chat</span>
+          <span class="chip">Woodem – Cálculo · PDF Export</span>
+          <span class="chip">MVPs · Startups · Consultoría</span>
+        </div>
+      </div>
     </div>
-  </section>
+  </header>
 
-  <section class="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <p>Email: <a href="mailto:oscar.daganzo@veldinnetwork.com">oscar.daganzo@veldinnetwork.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com" target="_blank">View Profile</a></p>
-    </div>
-  </section>
-</div>
+  <main>
+    <!-- SOBRE MÍ -->
+    <section id="about">
+      <div class="section-label" data-i18n="aboutLabel">Sobre mí</div>
+      <h2 class="section-title" data-i18n="aboutTitle">
+        Te acompaño desde la idea hasta la publicación
+      </h2>
+      <div class="section-grid">
+        <div class="card">
+          <p class="muted" data-i18n="aboutBody1">
+            Soy desarrollador mobile freelance especializado en React Native y Firebase.
+            Trabajo con emprendedores, pymes y agencias que necesitan lanzar una app
+            clara y funcional sin perder meses en incertidumbre técnica.
+          </p>
+          <p class="muted" data-i18n="aboutBody2">
+            Puedo ayudarte tanto si quieres crear una app desde cero como si ya tienes
+            un producto en marcha y necesitas mejorar rendimiento, arquitectura o
+            experiencia de usuario.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="aboutListTitle">En qué puedo ayudarte</h3>
+          <ul>
+            <li data-i18n="aboutList1">
+              Desarrollo de apps a medida (iOS y Android) con React Native + Expo.
+            </li>
+            <li data-i18n="aboutList2">
+              Arquitectura técnica sobre Firebase (Auth, Firestore, Storage, Functions).
+            </li>
+            <li data-i18n="aboutList3">
+              MVPs y productos de alto crecimiento para startups.
+            </li>
+            <li data-i18n="aboutList4">
+              Chat en tiempo real, mapas, geolocalización y notificaciones push.
+            </li>
+            <li data-i18n="aboutList5">
+              Consultoría técnica y auditoría de apps existentes.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  © 2025 · Oscar Daganzo
-</footer>
+    <!-- PROYECTOS -->
+    <section id="projects">
+      <div class="section-label" data-i18n="projectsLabel">Proyectos</div>
+      <h2 class="section-title" data-i18n="projectsTitle">
+        Experiencia real en producto
+      </h2>
+
+      <div class="section-grid">
+        <div class="card">
+          <h3>EPE – Españoles Por Europa</h3>
+          <p class="muted" data-i18n="epeBody1">
+            Red social para españoles que viven, trabajan o viajan por Europa. Conecta
+            personas por ciudad y país, pensada para facilitar su integración y
+            encontrar contactos en cada destino.
+          </p>
+          <ul>
+            <li data-i18n="epeFeature1">
+              Mapa con clustering inteligente por ciudad (optimizado para 50.000+ usuarios).
+            </li>
+            <li data-i18n="epeFeature2">
+              Perfiles personalizables, temas visuales y sistema de logros/medallas.
+            </li>
+            <li data-i18n="epeFeature3">
+              Chat en tiempo real tipo WhatsApp: paginación, scroll inteligente, estados de lectura.
+            </li>
+            <li data-i18n="epeFeature4">
+              Notificaciones push, bloqueo de usuarios y fondos personalizados por chat.
+            </li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">React Native</span>
+            <span class="pill">Expo</span>
+            <span class="pill">Firebase · Firestore</span>
+            <span class="pill">FCM Push</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Woodem – Herramienta para carpintería</h3>
+          <p class="muted" data-i18n="woodemBody1">
+            Aplicación profesional orientada a talleres de carpintería y fabricación
+            de muebles. A partir de las medidas del mueble, genera automáticamente el
+            despiece, el cálculo de materiales y la merma.
+          </p>
+          <ul>
+            <li data-i18n="woodemFeature1">
+              Algoritmo de despiece y cálculo de tableros optimizado para uso diario.
+            </li>
+            <li data-i18n="woodemFeature2">
+              Formulario avanzado de entrada de datos con opciones de baldas, puertas y divisores.
+            </li>
+            <li data-i18n="woodemFeature3">
+              Generación de PDF con cortes y piezas listo para producción.
+            </li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">TypeScript</span>
+            <span class="pill">Expo</span>
+            <span class="pill">Algoritmos de cálculo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="services">
+      <div class="section-label" data-i18n="servicesLabel">
+        Servicios profesionales
+      </div>
+      <h2 class="section-title" data-i18n="servicesTitle">
+        Desarrollo de apps y consultoría técnica
+      </h2>
+
+      <div class="section-grid">
+        <div class="card">
+          <h3 data-i18n="servicesDevTitle">
+            Desarrollo de Apps (iOS & Android)
+          </h3>
+          <ul>
+            <li data-i18n="servicesDev1">
+              Creación de apps completas con React Native + Firebase.
+            </li>
+            <li data-i18n="servicesDev2">
+              Integración de mapas, chat, notificaciones, perfiles y más.
+            </li>
+            <li data-i18n="servicesDev3">
+              Enfoque en velocidad, estabilidad y validación de mercado.
+            </li>
+            <li data-i18n="servicesDev4">
+              Ideal para emprendedores que necesitan lanzar rápido un MVP sólido.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="servicesAuditTitle">
+            Auditoría y consultoría
+          </h3>
+          <ul>
+            <li data-i18n="servicesAudit1">
+              Revisión de arquitectura, rendimiento y seguridad de apps existentes.
+            </li>
+            <li data-i18n="servicesAudit2">
+              Recomendaciones claras y roadmap técnico de mejora.
+            </li>
+            <li data-i18n="servicesAudit3">
+              Mentoría técnica para equipos y proyectos en curso.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-grid" style="margin-top:18px;">
+        <div class="card">
+          <h3 data-i18n="methodTitle">Metodología de trabajo</h3>
+          <ul>
+            <li data-i18n="method1">
+              Reunión inicial para entender necesidades y objetivos.
+            </li>
+            <li data-i18n="method2">
+              Propuesta técnica y roadmap realista.
+            </li>
+            <li data-i18n="method3">
+              Desarrollo iterativo con entregas frecuentes.
+            </li>
+            <li data-i18n="method4">
+              Pruebas en dispositivos reales y soporte en publicación en stores.
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 data-i18n="modalitiesTitle">Modalidades de contratación</h3>
+          <ul>
+            <li data-i18n="modal1">Proyecto cerrado (precio por proyecto).</li>
+            <li data-i18n="modal2">
+              Retainer mensual para mantenimiento o nuevas funcionalidades.
+            </li>
+            <li data-i18n="modal3">Bolsas de horas para soporte flexible.</li>
+            <li data-i18n="modal4">
+              Colaboración con startups / equity parcial, según encaje.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contact">
+      <div class="section-label" data-i18n="contactLabel">Contacto</div>
+      <h2 class="section-title" data-i18n="contactTitle">
+        ¿Hablamos de tu proyecto?
+      </h2>
+
+      <div class="contact-grid">
+        <div class="card contact-list">
+          <p><strong>Email</strong><br />
+            <a href="mailto:oscar.daganzo@veldinnetwork.com">
+              oscar.daganzo@veldinnetwork.com
+            </a>
+          </p>
+          <p><strong>Teléfono</strong><br />
+            <a href="tel:+34644859837">+34 644 85 98 37</a>
+          </p>
+          <p><strong>Ubicación</strong><br />
+            Barcelona, España
+          </p>
+          <p><strong>LinkedIn</strong><br />
+            <a href="https://www.linkedin.com/in/oscar-daganzo-ruiz-4aa449335" target="_blank">
+              linkedin.com/in/oscar-daganzo
+            </a>
+          </p>
+        </div>
+        <div class="card">
+          <p class="muted" data-i18n="contactBody">
+            Cuéntame brevemente tu idea, la fase en la que estás y qué necesitas:
+            desarrollo completo, mejora de una app existente o consultoría técnica.
+            A partir de ahí, te propondré la mejor forma de colaborar.
+          </p>
+          <p class="muted" style="margin-top:10px;" data-i18n="contactClosing">
+            Transformemos tu idea en un producto real.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> · Oscar Daganzo · React Native & Firebase
+  </footer>
+
+  <script>
+    const translations = {
+      es: {
+        pageTitle: "Oscar Daganzo – Desarrollador Mobile",
+        brandRole: "Desarrollador Mobile · React Native & Firebase",
+        langLabel: "Idioma",
+        badge: "Transformo ideas en productos reales",
+        heroTitle1: "Desarrollador",
+        heroTitle2: "Mobile",
+        heroSubtitle:
+          "Freelance especializado en React Native y Firebase. Te ayudo a pasar de idea a app real en iOS y Android, con foco en producto, experiencia de usuario y escalabilidad.",
+        ctaPrimary: "Hablemos de tu app",
+        ctaSecondary: "Ver servicios",
+        heroCardTitle: "Experiencia destacada",
+        heroCardText:
+          "He liderado el desarrollo de <strong>Españoles Por Europa (EPE)</strong>, una red social con mapas, chat en tiempo real, clustering de usuarios, perfiles personalizables y sistema de logros; y he desarrollado <strong>Woodem</strong>, una herramienta profesional para carpintería que genera despieces, cálculos de materiales y presupuestos de forma automática.",
+        aboutLabel: "Sobre mí",
+        aboutTitle: "Te acompaño desde la idea hasta la publicación",
+        aboutBody1:
+          "Soy desarrollador mobile freelance especializado en React Native y Firebase. Trabajo con emprendedores, pymes y agencias que necesitan lanzar una app clara y funcional sin perder meses en incertidumbre técnica.",
+        aboutBody2:
+          "Puedo ayudarte tanto si quieres crear una app desde cero como si ya tienes un producto en marcha y necesitas mejorar rendimiento, arquitectura o experiencia de usuario.",
+        aboutListTitle: "En qué puedo ayudarte",
+        aboutList1:
+          "Desarrollo de apps a medida (iOS y Android) con React Native + Expo.",
+        aboutList2:
+          "Arquitectura técnica sobre Firebase (Auth, Firestore, Storage, Functions).",
+        aboutList3:
+          "MVPs y productos de alto crecimiento para startups.",
+        aboutList4:
+          "Chat en tiempo real, mapas, geolocalización y notificaciones push.",
+        aboutList5:
+          "Consultoría técnica y auditoría de apps existentes.",
+        projectsLabel: "Proyectos",
+        projectsTitle: "Experiencia real en producto",
+        epeBody1:
+          "Red social para españoles que viven, trabajan o viajan por Europa. Conecta personas por ciudad y país, pensada para facilitar su integración y encontrar contactos en cada destino.",
+        epeFeature1:
+          "Mapa con clustering inteligente por ciudad (optimizado para 50.000+ usuarios).",
+        epeFeature2:
+          "Perfiles personalizables, temas visuales y sistema de logros/medallas.",
+        epeFeature3:
+          "Chat en tiempo real tipo WhatsApp: paginación, scroll inteligente, estados de lectura.",
+        epeFeature4:
+          "Notificaciones push, bloqueo de usuarios y fondos personalizados por chat.",
+        woodemBody1:
+          "Aplicación profesional orientada a talleres de carpintería y fabricación de muebles. A partir de las medidas del mueble, genera automáticamente el despiece, el cálculo de materiales y la merma.",
+        woodemFeature1:
+          "Algoritmo de despiece y cálculo de tableros optimizado para uso diario.",
+        woodemFeature2:
+          "Formulario avanzado de entrada de datos con opciones de baldas, puertas y divisores.",
+        woodemFeature3:
+          "Generación de PDF con cortes y piezas listo para producción.",
+        servicesLabel: "Servicios profesionales",
+        servicesTitle: "Desarrollo de apps y consultoría técnica",
+        servicesDevTitle: "Desarrollo de Apps (iOS & Android)",
+        servicesDev1:
+          "Creación de apps completas con React Native + Firebase.",
+        servicesDev2:
+          "Integración de mapas, chat, notificaciones, perfiles y más.",
+        servicesDev3:
+          "Enfoque en velocidad, estabilidad y validación de mercado.",
+        servicesDev4:
+          "Ideal para emprendedores que necesitan lanzar rápido un MVP sólido.",
+        servicesAuditTitle: "Auditoría y consultoría",
+        servicesAudit1:
+          "Revisión de arquitectura, rendimiento y seguridad de apps existentes.",
+        servicesAudit2:
+          "Recomendaciones claras y roadmap técnico de mejora.",
+        servicesAudit3:
+          "Mentoría técnica para equipos y proyectos en curso.",
+        methodTitle: "Metodología de trabajo",
+        method1:
+          "Reunión inicial para entender necesidades y objetivos.",
+        method2:
+          "Propuesta técnica y roadmap realista.",
+        method3:
+          "Desarrollo iterativo con entregas frecuentes.",
+        method4:
+          "Pruebas en dispositivos reales y soporte en publicación en stores.",
+        modalitiesTitle: "Modalidades de contratación",
+        modal1: "Proyecto cerrado (precio por proyecto).",
+        modal2:
+          "Retainer mensual para mantenimiento o nuevas funcionalidades.",
+        modal3: "Bolsas de horas para soporte flexible.",
+        modal4:
+          "Colaboración con startups / equity parcial, según encaje.",
+        contactLabel: "Contacto",
+        contactTitle: "¿Hablamos de tu proyecto?",
+        contactBody:
+          "Cuéntame brevemente tu idea, la fase en la que estás y qué necesitas: desarrollo completo, mejora de una app existente o consultoría técnica. A partir de ahí, te propondré la mejor forma de colaborar.",
+        contactClosing: "Transformemos tu idea en un producto real."
+      },
+      ca: {
+        pageTitle: "Oscar Daganzo – Desenvolupador Mobile",
+        brandRole: "Desenvolupador Mobile · React Native & Firebase",
+        langLabel: "Idioma",
+        badge: "Transformo idees en productes reals",
+        heroTitle1: "Desenvolupador",
+        heroTitle2: "Mobile",
+        heroSubtitle:
+          "Freelance especialitzat en React Native i Firebase. T’ajudo a passar d’idea a app real en iOS i Android, amb focus en producte, experiència d’usuari i escalabilitat.",
+        ctaPrimary: "Parlem de la teva app",
+        ctaSecondary: "Veure serveis",
+        heroCardTitle: "Experiència destacada",
+        heroCardText:
+          "He liderat el desenvolupament de <strong>Españoles Por Europa (EPE)</strong>, una xarxa social amb mapes, xat en temps real, clustering d’usuaris, perfils personalitzables i sistema de logros; i he desenvolupat <strong>Woodem</strong>, una eina professional per a fusteria que genera descomposicions, càlculs de materials i pressupostos de forma automàtica.",
+        aboutLabel: "Sobre mi",
+        aboutTitle: "T’acompanyo des de la idea fins a la publicació",
+        aboutBody1:
+          "Sóc desenvolupador mobile freelance especialitzat en React Native i Firebase. Treballo amb emprenedors, pimes i agències que necessiten llançar una app clara i funcional sense perdre mesos en incertesa tècnica.",
+        aboutBody2:
+          "Et puc ajudar tant si vols crear una app des de zero com si ja tens un producte en marxa i necessites millorar rendiment, arquitectura o experiència d’usuari.",
+        aboutListTitle: "En què et puc ajudar",
+        aboutList1:
+          "Desenvolupament d’apps a mida (iOS i Android) amb React Native + Expo.",
+        aboutList2:
+          "Arquitectura tècnica sobre Firebase (Auth, Firestore, Storage, Functions).",
+        aboutList3:
+          "MVPs i productes d’alt creixement per a startups.",
+        aboutList4:
+          "Xat en temps real, mapes, geolocalització i notificacions push.",
+        aboutList5:
+          "Consultoria tècnica i auditoria d’apps existents.",
+        projectsLabel: "Projectes",
+        projectsTitle: "Experiència real en producte",
+        epeBody1:
+          "Xarxa social per a espanyols que viuen, treballen o viatgen per Europa. Connecta persones per ciutat i país per facilitar la seva integració i trobar contactes a cada destinació.",
+        epeFeature1:
+          "Mapa amb clustering intel·ligent per ciutat (optimitzat per a 50.000+ usuaris).",
+        epeFeature2:
+          "Perfils personalitzables, temes visuals i sistema de logros/medalles.",
+        epeFeature3:
+          "Xat en temps real tipus WhatsApp: paginació, scroll intel·ligent, estats de lectura.",
+        epeFeature4:
+          "Notificacions push, bloqueig d’usuaris i fons personalitzats per xat.",
+        woodemBody1:
+          "Aplicació professional orientada a tallers de fusteria i fabricació de mobles. A partir de les mides del moble, genera automàticament el desglossament, el càlcul de materials i la merma.",
+        woodemFeature1:
+          "Algoritme de desglossament i càlcul de taulers optimitzat per a l’ús diari.",
+        woodemFeature2:
+          "Formulari avançat d’entrada de dades amb opcions de prestatges, portes i divisòries.",
+        woodemFeature3:
+          "Generació de PDF amb talls i peces llest per a producció.",
+        servicesLabel: "Serveis professionals",
+        servicesTitle: "Desenvolupament d’apps i consultoria tècnica",
+        servicesDevTitle: "Desenvolupament d’Apps (iOS & Android)",
+        servicesDev1:
+          "Creació d’apps completes amb React Native + Firebase.",
+        servicesDev2:
+          "Integració de mapes, xat, notificacions, perfils i més.",
+        servicesDev3:
+          "Focus en velocitat, estabilitat i validació de mercat.",
+        servicesDev4:
+          "Ideal per a emprenedors que necessiten llançar ràpid un MVP sòlid.",
+        servicesAuditTitle: "Auditoria i consultoria",
+        servicesAudit1:
+          "Revisió d’arquitectura, rendiment i seguretat d’apps existents.",
+        servicesAudit2:
+          "Recomanacions clares i roadmap tècnic de millora.",
+        servicesAudit3:
+          "Mentoria tècnica per a equips i projectes en curs.",
+        methodTitle: "Metodologia de treball",
+        method1:
+          "Reunió inicial per entendre necessitats i objectius.",
+        method2:
+          "Proposta tècnica i roadmap realista.",
+        method3:
+          "Desenvolupament iteratiu amb entregues freqüents.",
+        method4:
+          "Proves en dispositius reals i suport en publicació a stores.",
+        modalitiesTitle: "Modalitats de contractació",
+        modal1: "Projecte tancat (preu per projecte).",
+        modal2:
+          "Retainer mensual per a manteniment o noves funcionalitats.",
+        modal3: "Bossa d’hores per a suport flexible.",
+        modal4:
+          "Col·laboració amb startups / equity parcial segons encaix.",
+        contactLabel: "Contacte",
+        contactTitle: "Parlem del teu projecte?",
+        contactBody:
+          "Explica’m breument la teva idea, la fase en què estàs i què necessites: desenvolupament complet, millora d’una app existent o consultoria tècnica. A partir d’aquí et proposaré la millor manera de col·laborar.",
+        contactClosing: "Transformem la teva idea en un producte real."
+      },
+      en: {
+        pageTitle: "Oscar Daganzo – Mobile App Developer",
+        brandRole: "Mobile App Developer · React Native & Firebase",
+        langLabel: "Language",
+        badge: "I turn ideas into real products",
+        heroTitle1: "Mobile App",
+        heroTitle2: "Developer",
+        heroSubtitle:
+          "Freelance React Native & Firebase developer. I help you go from idea to real app on iOS and Android, with a strong focus on product, UX and scalability.",
+        ctaPrimary: "Let’s talk about your app",
+        ctaSecondary: "View services",
+        heroCardTitle: "Highlighted experience",
+        heroCardText:
+          "I led the development of <strong>Españoles Por Europa (EPE)</strong>, a social app with maps, real-time chat, user clustering, customizable profiles and achievements system; and I built <strong>Woodem</strong>, a professional carpentry tool that generates cut lists, material calculations and quotes automatically.",
+        aboutLabel: "About me",
+        aboutTitle: "From idea to App Store & Google Play",
+        aboutBody1:
+          "I’m a freelance mobile developer specialized in React Native and Firebase. I work with founders, small businesses and agencies that need to launch a clear, stable app without getting lost in technical complexity.",
+        aboutBody2:
+          "I can help you whether you want to build an app from scratch or improve an existing product in terms of performance, architecture or user experience.",
+        aboutListTitle: "How I can help",
+        aboutList1:
+          "Custom app development (iOS & Android) with React Native + Expo.",
+        aboutList2:
+          "Technical architecture on Firebase (Auth, Firestore, Storage, Functions).",
+        aboutList3:
+          "MVPs and high-growth products for startups.",
+        aboutList4:
+          "Real-time chat, maps, geolocation and push notifications.",
+        aboutList5:
+          "Technical consulting and code / app audits.",
+        projectsLabel: "Projects",
+        projectsTitle: "Real product experience",
+        epeBody1:
+          "Social app for Spanish people living, working or traveling across Europe. It connects users by city and country to help them integrate and find contacts in each destination.",
+        epeFeature1:
+          "Smart clustering map by city (optimized for 50,000+ users).",
+        epeFeature2:
+          "Customizable profiles, visual themes and achievements / badges system.",
+        epeFeature3:
+          "Real-time chat (WhatsApp-like): pagination, smart scroll, read states.",
+        epeFeature4:
+          "Push notifications, user blocking and custom chat backgrounds.",
+        woodemBody1:
+          "Professional tool for carpentry workshops and furniture makers. From the furniture dimensions it automatically generates cut lists, material usage and waste.",
+        woodemFeature1:
+          "Optimized cut-list algorithm for daily use in the workshop.",
+        woodemFeature2:
+          "Advanced input form with shelves, doors and dividers options.",
+        woodemFeature3:
+          "PDF export with all cuts and pieces ready for production.",
+        servicesLabel: "Professional services",
+        servicesTitle: "App development & technical consulting",
+        servicesDevTitle: "Mobile App Development (iOS & Android)",
+        servicesDev1:
+          "End-to-end app development with React Native + Firebase.",
+        servicesDev2:
+          "Integration of maps, chat, notifications, profiles and more.",
+        servicesDev3:
+          "Focus on speed, stability and market validation.",
+        servicesDev4:
+          "Perfect for founders who need to launch a solid MVP fast.",
+        servicesAuditTitle: "Audit & consulting",
+        servicesAudit1:
+          "Architecture, performance and security review of existing apps.",
+        servicesAudit2:
+          "Clear recommendations and a technical roadmap for improvements.",
+        servicesAudit3:
+          "Technical mentoring for teams and ongoing projects.",
+        methodTitle: "How I work",
+        method1:
+          "Initial call to understand needs and goals.",
+        method2:
+          "Technical proposal and realistic roadmap.",
+        method3:
+          "Iterative development with frequent deliverables.",
+        method4:
+          "Testing on real devices and support for store publishing.",
+        modalitiesTitle: "Engagement models",
+        modal1: "Fixed-price project.",
+        modal2:
+          "Monthly retainer for maintenance or continuous features.",
+        modal3: "Hour bundles for flexible support.",
+        modal4:
+          "Startup collaboration / partial equity when there is a good fit.",
+        contactLabel: "Contact",
+        contactTitle: "Let’s talk about your project",
+        contactBody:
+          "Tell me briefly about your idea, the stage you are in and what you need: full development, improving an existing app or technical consulting. From there, I’ll propose the best way to collaborate.",
+        contactClosing: "Let’s turn your idea into a real product."
+      }
+    };
+
+    function setLanguage(lang) {
+      const dict = translations[lang] || translations.es;
+      document.documentElement.lang = lang;
+      document.title = dict.pageTitle;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+    }
+
+    const select = document.getElementById("langSwitcher");
+    select.addEventListener("change", (e) => {
+      setLanguage(e.target.value);
+    });
+
+    // init
+    setLanguage("es");
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
