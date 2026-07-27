@@ -28,10 +28,10 @@ export type ProjectExample = {
 export const projectExamples: ProjectExample[] = [
   {
     visible: true,
-    image: null,
+    image: /projects/tuseteventosplano.pdf,
     alt: {
-      es: "Añade aquí una imagen del primer proyecto",
-      ca: "Afegeix aquí una imatge del primer projecte",
+      es: "Proyecto Uruguay",
+      ca: "Projecte Uruguay",
     },
     category: {
       es: "Stand · Diseño modular",
@@ -42,8 +42,8 @@ export const projectExamples: ProjectExample[] = [
       ca: "Nom del projecte 01",
     },
     description: {
-      es: "Explica brevemente el reto, la solución técnica y qué decisión ayudó a transportar, montar o reutilizar mejor el diseño.",
-      ca: "Explica breument el repte, la solució tècnica i quina decisió va ajudar a transportar, muntar o reutilitzar millor el disseny.",
+      es: "Ejemplar stand 6x5m.",
+      ca: "Exemplar estand 6x5m.",
     },
     tags: ["DWG", "Despiece", "Montaje"],
   },
