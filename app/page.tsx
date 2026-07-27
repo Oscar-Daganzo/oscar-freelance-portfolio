@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import { useEffect, useState } from "react";
 import { type Locale, siteContent } from "./content";
 
@@ -110,27 +112,37 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="blueprint-shell">
-            <div className="blueprint-card">
+          <div className="blueprint-shell eco-hero-shell">
+            <div className="eco-orbit eco-orbit-one" aria-hidden="true" />
+            <div className="eco-orbit eco-orbit-two" aria-hidden="true" />
+            <div className="blueprint-card eco-hero-card">
               <div className="blueprint-head">
                 <span>{content.blueprint.label}</span>
-                <span>ESC. 1:20</span>
+                <span className="motion-status">
+                  <span aria-hidden="true" />
+                  {content.visuals.motionStatus}
+                </span>
               </div>
 
-              <div className="technical-drawing" aria-hidden="true">
-                <div className="measure measure-top">2400</div>
-                <div className="measure measure-side">2000</div>
-                <div className="module module-a">
-                  <span>01</span>
-                </div>
-                <div className="module module-b">
-                  <span>02</span>
-                </div>
-                <div className="module module-c">
-                  <span>03</span>
-                </div>
-                <div className="joint joint-a" />
-                <div className="joint joint-b" />
+              <div className="earth-stage">
+                <span className="earth-stage-note note-top" aria-hidden="true">
+                  01 · PLAN
+                </span>
+                <span className="earth-stage-note note-bottom" aria-hidden="true">
+                  04 · REUSE
+                </span>
+                <picture>
+                  <source
+                    media="(prefers-reduced-motion: reduce)"
+                    srcSet="/media/earth-cycle-still.webp"
+                  />
+                  <img
+                    src="/media/earth-cycle.gif"
+                    width="480"
+                    height="480"
+                    alt={content.visuals.earthAlt}
+                  />
+                </picture>
               </div>
 
               <div className="blueprint-labels">
@@ -152,6 +164,35 @@ export default function Home() {
               <p>{principle}</p>
             </div>
           ))}
+        </section>
+
+        <section
+          className="eco-manifesto"
+          aria-labelledby="eco-manifesto-title"
+        >
+          <div className="eco-manifesto-heading">
+            <p className="eyebrow">
+              <span className="eyebrow-dot" />
+              {content.visuals.manifestoEyebrow}
+            </p>
+            <p>{content.visuals.manifestoCaption}</p>
+          </div>
+          <h2 className="sr-only" id="eco-manifesto-title">
+            {content.visuals.manifestoTitle}
+          </h2>
+          <figure className="eco-manifesto-frame">
+            <img
+              src="/media/salvamos-arboles.webp"
+              width="1800"
+              height="599"
+              loading="lazy"
+              alt={content.visuals.manifestoAlt}
+            />
+            <figcaption>
+              <span>OD / ECO 01</span>
+              <span>{content.visuals.manifestoFigureCaption}</span>
+            </figcaption>
+          </figure>
         </section>
 
         <section className="section services-section" id="services">

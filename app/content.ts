@@ -32,6 +32,18 @@ export const siteContent = {
       reuse: "Nueva configuración",
       note: "Diseño pensado como sistema, no como residuo.",
     },
+    visuals: {
+      motionStatus: "Ciclo activo",
+      earthAlt:
+        "Animación de la Tierra rodeada por las flechas del reciclaje y el mensaje The future is green.",
+      manifestoEyebrow: "Nuestro manifiesto",
+      manifestoTitle: "Salvamos árboles con cada plano",
+      manifestoCaption:
+        "Diseñar con precisión también es una forma de cuidar los recursos.",
+      manifestoAlt:
+        "Ilustración: Salvamos árboles con cada plano. Un plano técnico, un árbol, piezas modulares y el símbolo de reciclaje muestran un ciclo de diseño preciso, recursos optimizados y menos residuos. El futuro depende de cada detalle.",
+      manifestoFigureCaption: "Plano · recurso · reutilización",
+    },
     principles: ["Planos claros", "Menos improvisación", "Más ciclos de uso"],
     services: {
       eyebrow: "Qué hago",
@@ -210,6 +222,18 @@ export const siteContent = {
       assembly: "Muntatge clar",
       reuse: "Nova configuració",
       note: "Disseny pensat com a sistema, no com a residu.",
+    },
+    visuals: {
+      motionStatus: "Cicle actiu",
+      earthAlt:
+        "Animació de la Terra envoltada per les fletxes del reciclatge i el missatge The future is green.",
+      manifestoEyebrow: "El nostre manifest",
+      manifestoTitle: "Salvem arbres amb cada plànol",
+      manifestoCaption:
+        "Dissenyar amb precisió també és una manera de cuidar els recursos.",
+      manifestoAlt:
+        "Il·lustració: Salvem arbres amb cada plànol. Un plànol tècnic, un arbre, peces modulars i el símbol de reciclatge mostren un cicle de disseny precís, recursos optimitzats i menys residus. El futur depèn de cada detall.",
+      manifestoFigureCaption: "Plànol · recurs · reutilització",
     },
     principles: ["Plànols clars", "Menys improvisació", "Més cicles d'ús"],
     services: {

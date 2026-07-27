@@ -29,6 +29,17 @@ Las variables principales están al inicio de `app/globals.css`:
 - `--lime`: verde claro.
 - `--clay`: acento terracota.
 
+## Imágenes de identidad
+
+Los recursos visuales eco-friendly están en `public/media`:
+
+- `earth-cycle.gif`: animación de portada.
+- `earth-cycle-still.webp`: alternativa estática para usuarios que reducen el movimiento.
+- `salvamos-arboles.webp`: manifiesto visual entre la introducción y los servicios.
+
+Los textos alternativos y los pies visibles se editan en el bloque `visuals` de
+`app/content.ts`, tanto en castellano como en catalán.
+
 ## Desarrollo local
 
 ```bash
