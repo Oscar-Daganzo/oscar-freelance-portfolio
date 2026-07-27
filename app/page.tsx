@@ -112,48 +112,85 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="blueprint-shell eco-hero-shell">
-            <div className="eco-orbit eco-orbit-one" aria-hidden="true" />
-            <div className="eco-orbit eco-orbit-two" aria-hidden="true" />
-            <div className="blueprint-card eco-hero-card">
-              <div className="blueprint-head">
-                <span>{content.blueprint.label}</span>
-                <span className="motion-status">
-                  <span aria-hidden="true" />
-                  {content.visuals.motionStatus}
-                </span>
-              </div>
+          <div
+            className="story-world"
+            onPointerMove={(event) => {
+              const rect = event.currentTarget.getBoundingClientRect();
+              event.currentTarget.style.setProperty(
+                "--pointer-x",
+                `${((event.clientX - rect.left) / rect.width - 0.5) * 2}`,
+              );
+              event.currentTarget.style.setProperty(
+                "--pointer-y",
+                `${((event.clientY - rect.top) / rect.height - 0.5) * 2}`,
+              );
+            }}
+            onPointerLeave={(event) => {
+              event.currentTarget.style.setProperty("--pointer-x", "0");
+              event.currentTarget.style.setProperty("--pointer-y", "0");
+            }}
+          >
+            <div className="world-thread thread-one" aria-hidden="true" />
+            <div className="world-thread thread-two" aria-hidden="true" />
 
-              <div className="earth-stage">
-                <span className="earth-stage-note note-top" aria-hidden="true">
-                  01 · PLAN
-                </span>
-                <span className="earth-stage-note note-bottom" aria-hidden="true">
-                  04 · REUSE
-                </span>
-                <picture>
-                  <source
-                    media="(prefers-reduced-motion: reduce)"
-                    srcSet="/media/earth-cycle-still.webp"
-                  />
-                  <img
-                    src="/media/earth-cycle.gif"
-                    width="480"
-                    height="480"
-                    alt={content.visuals.earthAlt}
-                  />
-                </picture>
+            <figure className="portrait-piece">
+              <span className="paper-tape tape-top" aria-hidden="true" />
+              <span className="paper-tape tape-side" aria-hidden="true" />
+              <div className="portrait-window">
+                <img
+                  src="/media/oscar-daganzo.webp"
+                  width="900"
+                  height="900"
+                  alt={
+                    locale === "es"
+                      ? "Oscar Daganzo, diseñador técnico"
+                      : "Oscar Daganzo, dissenyador tècnic"
+                  }
+                />
               </div>
+              <figcaption>
+                <span>Oscar Daganzo</span>
+                <small>{content.footer.role}</small>
+              </figcaption>
+            </figure>
 
-              <div className="blueprint-labels">
-                <span>{content.blueprint.module}</span>
-                <span>{content.blueprint.transport}</span>
-                <span>{content.blueprint.assembly}</span>
-                <span>{content.blueprint.reuse}</span>
-              </div>
-
-              <p>{content.blueprint.note}</p>
+            <div className="planet-piece">
+              <span className="planet-label">{content.visuals.motionStatus}</span>
+              <picture>
+                <source
+                  media="(prefers-reduced-motion: reduce)"
+                  srcSet="/media/earth-cycle-still.webp"
+                />
+                <img
+                  src="/media/earth-cycle.gif"
+                  width="480"
+                  height="480"
+                  alt={content.visuals.earthAlt}
+                />
+              </picture>
             </div>
+
+            <div className="eco-sticker sticker-leaf" aria-hidden="true">
+              <span>↗</span>
+              <strong>RE·USE</strong>
+            </div>
+            <div className="eco-sticker sticker-idea" aria-hidden="true">
+              <span>✦</span>
+              <strong>IDEA</strong>
+            </div>
+            <div className="eco-sticker sticker-detail" aria-hidden="true">
+              <span>⌁</span>
+              <strong>DETAIL</strong>
+            </div>
+            <div className="scribble scribble-one" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <p className="world-note">
+              <span aria-hidden="true">✎</span>
+              {content.blueprint.note}
+            </p>
           </div>
         </section>
 
@@ -196,6 +233,12 @@ export default function Home() {
         </section>
 
         <section className="section services-section" id="services">
+          <div className="section-craft section-craft-services" aria-hidden="true">
+            <span className="craft-sticker craft-sticker-round">ECO</span>
+            <span className="craft-sticker craft-sticker-ticket">PLAN / 01</span>
+            <span className="craft-pencil">✎</span>
+            <span className="craft-stitch craft-stitch-long" />
+          </div>
           <div className="section-heading">
             <div>
               <p className="eyebrow">{content.services.eyebrow}</p>
@@ -205,12 +248,15 @@ export default function Home() {
           </div>
 
           <div className="services-grid">
-            {content.services.items.map((item) => (
-              <article className="service-card" key={item.number}>
+            {content.services.items.map((item, index) => (
+              <article
+                className={`service-card service-card-${index + 1}`}
+                key={item.number}
+              >
                 <div className="service-card-top">
                   <span>{item.number}</span>
-                  <span className="service-symbol" aria-hidden="true">
-                    ⌜
+                  <span className="service-sticker" aria-hidden="true">
+                    {["✎", "↻", "⌗", "✓"][index]}
                   </span>
                 </div>
                 <h3>{item.title}</h3>
@@ -262,6 +308,17 @@ export default function Home() {
         </section>
 
         <section className="section deliverables-section" id="deliverables">
+          <div
+            className="section-craft section-craft-deliverables"
+            aria-hidden="true"
+          >
+            <span className="craft-sticker craft-sticker-file">DWG</span>
+            <span className="craft-sticker craft-sticker-file craft-file-two">
+              DXF
+            </span>
+            <span className="craft-sticker craft-sticker-check">✓ READY</span>
+            <span className="craft-tape craft-tape-deliverables" />
+          </div>
           <div className="section-heading deliverables-heading">
             <div>
               <p className="eyebrow">{content.deliverables.eyebrow}</p>
@@ -319,6 +376,18 @@ export default function Home() {
         </section>
 
         <section className="commitment-section" id="commitment">
+          <div
+            className="section-craft section-craft-commitment"
+            aria-hidden="true"
+          >
+            <span className="craft-sticker craft-sticker-seal">
+              <b>OD</b>
+              <small>COMMITMENT</small>
+            </span>
+            <span className="craft-leaf craft-leaf-one" />
+            <span className="craft-leaf craft-leaf-two" />
+            <span className="craft-stitch craft-stitch-commitment" />
+          </div>
           <div className="commitment-copy">
             <p className="eyebrow">{content.commitment.eyebrow}</p>
             <h2>{content.commitment.title}</h2>
@@ -339,6 +408,13 @@ export default function Home() {
         </section>
 
         <section className="section process-section" id="process">
+          <div className="section-craft section-craft-process" aria-hidden="true">
+            <span className="craft-sticker craft-sticker-modular">
+              ↻ MODULAR
+            </span>
+            <span className="craft-arrow">↳</span>
+            <span className="craft-tape craft-tape-process" />
+          </div>
           <div className="section-heading process-heading">
             <div>
               <p className="eyebrow">{content.process.eyebrow}</p>
