@@ -3,31 +3,16 @@
 Web profesional bilingüe (castellano/catalán) para servicios de diseño técnico
 modular, documentación de fabricación y preparación de archivos DWG/DXF.
 
-## Editar textos y trabajos
+## Editar textos
 
-La información editable está centralizada en `app/content.ts`. Busca estos dos
-comentarios:
-
-- `ZONA EDITABLE — EJEMPLOS DE TRABAJOS`
-- `ZONA EDITABLE — TEXTOS GENERALES`
+La información editable está centralizada en `app/content.ts`, bajo el
+comentario `ZONA EDITABLE — TEXTOS GENERALES`.
 
 Los textos en castellano están dentro de `es` y los de catalán dentro de `ca`.
 
-### Añadir un trabajo
-
-1. Guarda su imagen en `public/projects/`.
-2. Abre `app/content.ts`.
-3. Sustituye `image: null` por la ruta de la imagen:
-
-   ```ts
-   image: "/projects/nombre-del-proyecto.webp",
-   ```
-
-4. Cambia categoría, título, descripción, texto alternativo y etiquetas.
-5. Para añadir otra ficha, duplica uno de los objetos de `projectExamples`.
-6. Para ocultar una ficha incompleta, usa `visible: false`.
-
-Formato de imagen recomendado: WebP horizontal 4:3 y menos de 300 KB.
+La web está planteada como página de servicios, sin portfolio ni proyectos de
+muestra. La sección `deliverables` explica qué documentación puede recibir el
+cliente según el alcance acordado.
 
 ## Contacto y horarios
 

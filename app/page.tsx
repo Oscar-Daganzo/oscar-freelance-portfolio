@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import {
-  type Locale,
-  projectExamples,
-  siteContent,
-} from "./content";
+import { type Locale, siteContent } from "./content";
 
 const PHONE_HREF = "tel:+34644859837";
 const EMAIL_HREF =
@@ -22,8 +17,6 @@ export default function Home() {
   const whatsappUrl = `https://wa.me/34644859837?text=${encodeURIComponent(
     whatsappMessage,
   )}`;
-  const visibleProjects = projectExamples.filter((project) => project.visible);
-
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
@@ -48,7 +41,7 @@ export default function Home() {
         <nav className="desktop-nav" aria-label="Navegación principal">
           <a href="#services">{content.nav.services}</a>
           <a href="#sustainability">{content.nav.approach}</a>
-          <a href="#projects">{content.nav.projects}</a>
+          <a href="#deliverables">{content.nav.deliverables}</a>
           <a href="#process">{content.nav.process}</a>
         </nav>
 
@@ -227,54 +220,60 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section projects-section" id="projects">
-          <div className="section-heading projects-heading">
+        <section className="section deliverables-section" id="deliverables">
+          <div className="section-heading deliverables-heading">
             <div>
-              <p className="eyebrow">{content.projects.eyebrow}</p>
-              <h2>{content.projects.title}</h2>
+              <p className="eyebrow">{content.deliverables.eyebrow}</p>
+              <h2>{content.deliverables.title}</h2>
             </div>
-            <p>{content.projects.intro}</p>
+            <p>{content.deliverables.intro}</p>
           </div>
 
-          <div className="projects-grid">
-            {visibleProjects.map((project, index) => (
-              <article className="project-card" key={`${project.title.es}-${index}`}>
-                <div className="project-media">
-                  {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={project.alt[locale]}
-                      fill
-                      sizes="(max-width: 700px) 100vw, (max-width: 980px) 50vw, 33vw"
-                    />
-                  ) : (
-                    <div className="project-placeholder">
-                      <div className="placeholder-drawing" aria-hidden="true">
-                        <span />
-                        <span />
-                        <span />
-                      </div>
-                      <div className="placeholder-copy">
-                        <strong>{content.projects.placeholder}</strong>
-                        <small>{content.projects.placeholderHint}</small>
-                      </div>
-                    </div>
-                  )}
-                  <span className="project-index">0{index + 1}</span>
+          <div className="deliverables-grid">
+            {content.deliverables.items.map((item) => (
+              <article className="deliverable-card" key={item.number}>
+                <div className="deliverable-sheet" aria-hidden="true">
+                  <div className="sheet-header">
+                    <span>OD / {item.number}</span>
+                    <span>ESC. —</span>
+                  </div>
+                  <div className="sheet-drawing">
+                    <span className="sheet-view sheet-view-main" />
+                    <span className="sheet-view sheet-view-side" />
+                    <span className="sheet-axis sheet-axis-x" />
+                    <span className="sheet-axis sheet-axis-y" />
+                    <span className="sheet-measure">1200</span>
+                  </div>
+                  <div className="sheet-footer">
+                    <span>{item.label}</span>
+                    <span>REV. 01</span>
+                  </div>
                 </div>
 
-                <div className="project-meta">
-                  <p className="project-category">{project.category[locale]}</p>
-                  <h3>{project.title[locale]}</h3>
-                  <p>{project.description[locale]}</p>
-                  <div className="project-tags" aria-label="Formatos y criterios">
-                    {project.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
+                <div className="deliverable-copy">
+                  <p className="deliverable-label">{item.label}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <div
+                    className="deliverable-formats"
+                    aria-label={
+                      locale === "es"
+                        ? "Formatos disponibles"
+                        : "Formats disponibles"
+                    }
+                  >
+                    {item.formats.map((format) => (
+                      <span key={format}>{format}</span>
                     ))}
                   </div>
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="deliverables-note">
+            <span aria-hidden="true">↳</span>
+            <p>{content.deliverables.note}</p>
           </div>
         </section>
 
