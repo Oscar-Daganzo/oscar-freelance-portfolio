@@ -1,96 +1,5 @@
 export type Locale = "es" | "ca";
 
-type LocalizedText = Record<Locale, string>;
-
-export type ProjectExample = {
-  /** Pon `false` para ocultar temporalmente una tarjeta. */
-  visible: boolean;
-  /** Ruta de una imagen dentro de /public. Ejemplo: "/projects/stand-modular.webp" */
-  image: string | null;
-  alt: LocalizedText;
-  category: LocalizedText;
-  title: LocalizedText;
-  description: LocalizedText;
-  tags: string[];
-};
-
-/*
- * ================================================================
- * ZONA EDITABLE — EJEMPLOS DE TRABAJOS
- * ================================================================
- * 1. Guarda tus imágenes en: /public/projects/
- * 2. Sustituye `image: null` por una ruta como:
- *      image: "/projects/nombre-del-proyecto.webp"
- * 3. Reemplaza los textos de ES y CA.
- * 4. Puedes duplicar una tarjeta completa para añadir más proyectos.
- * 5. Recomendación de imagen: WebP, formato horizontal 4:3 y < 300 KB.
- */
-export const projectExamples: ProjectExample[] = [
-  {
-    visible: true,
-    image: /projects/tuseteventosplano.pdf,
-    alt: {
-      es: "Proyecto Uruguay",
-      ca: "Projecte Uruguay",
-    },
-    category: {
-      es: "Stand · Diseño modular",
-      ca: "Estand · Disseny modular",
-    },
-    title: {
-      es: "Nombre del proyecto 01",
-      ca: "Nom del projecte 01",
-    },
-    description: {
-      es: "Ejemplar stand 6x5m.",
-      ca: "Exemplar estand 6x5m.",
-    },
-    tags: ["DWG", "Despiece", "Montaje"],
-  },
-  {
-    visible: true,
-    image: null,
-    alt: {
-      es: "Añade aquí una imagen del segundo proyecto",
-      ca: "Afegeix aquí una imatge del segon projecte",
-    },
-    category: {
-      es: "Expositor · Optimización",
-      ca: "Expositor · Optimització",
-    },
-    title: {
-      es: "Nombre del proyecto 02",
-      ca: "Nom del projecte 02",
-    },
-    description: {
-      es: "Añade el contexto del encargo, los condicionantes de fabricación y el resultado conseguido mediante una documentación clara.",
-      ca: "Afegeix el context de l'encàrrec, els condicionants de fabricació i el resultat aconseguit mitjançant una documentació clara.",
-    },
-    tags: ["DXF", "CNC", "Fabricación"],
-  },
-  {
-    visible: true,
-    image: null,
-    alt: {
-      es: "Añade aquí una imagen del tercer proyecto",
-      ca: "Afegeix aquí una imatge del tercer projecte",
-    },
-    category: {
-      es: "Mobiliario · Reutilización",
-      ca: "Mobiliari · Reutilització",
-    },
-    title: {
-      es: "Nombre del proyecto 03",
-      ca: "Nom del projecte 03",
-    },
-    description: {
-      es: "Describe cómo se resolvieron la modularidad, las uniones, el embalaje o el desmontaje para alargar la vida útil del conjunto.",
-      ca: "Descriu com es van resoldre la modularitat, les unions, l'embalatge o el desmuntatge per allargar la vida útil del conjunt.",
-    },
-    tags: ["Modular", "Reutilizable", "Transporte"],
-  },
-];
-
 /*
  * ZONA EDITABLE — TEXTOS GENERALES
  * Cambia aquí cualquier texto de la web. Mantén las dos versiones alineadas.
@@ -101,7 +10,7 @@ export const siteContent = {
     nav: {
       services: "Servicios",
       approach: "Enfoque",
-      projects: "Trabajos",
+      deliverables: "Entregables",
       process: "Proceso",
       contact: "Contacto",
     },
@@ -179,13 +88,34 @@ export const siteContent = {
         },
       ],
     },
-    projects: {
-      eyebrow: "Trabajos seleccionados",
-      title: "Aquí irá la evidencia, no solo el discurso.",
-      intro: "He dejado preparadas estas fichas para añadir proyectos reales con imagen, contexto, solución técnica y resultado.",
-      placeholder: "Añade aquí la imagen",
-      placeholderHint: "public/projects/…",
-      viewLabel: "Ficha de proyecto",
+    deliverables: {
+      eyebrow: "Qué recibirás",
+      title: "Documentación útil desde el primer encargo.",
+      intro: "El contenido final se adapta a cada necesidad. Antes de empezar quedarán definidos el alcance, las revisiones y los formatos de entrega.",
+      items: [
+        {
+          number: "01",
+          label: "Documento técnico",
+          title: "Planos claros",
+          text: "Vistas, cotas, secciones y detalles organizados para revisar, fabricar o montar con menos dudas.",
+          formats: ["PDF", "DWG"],
+        },
+        {
+          number: "02",
+          label: "Control de piezas",
+          title: "Despieces ordenados",
+          text: "Piezas identificadas con medidas y referencias coherentes para facilitar la preparación y el seguimiento.",
+          formats: ["PDF", "Listado"],
+        },
+        {
+          number: "03",
+          label: "Paso a producción",
+          title: "Archivos preparados",
+          text: "Documentación DWG/DXF revisada según el alcance acordado para su uso en taller o mecanizado CNC.",
+          formats: ["DWG", "DXF", "CNC"],
+        },
+      ],
+      note: "Cada entrega parte de una necesidad real: se acuerda primero y se documenta después.",
     },
     commitment: {
       eyebrow: "Compromiso",
@@ -259,7 +189,7 @@ export const siteContent = {
     nav: {
       services: "Serveis",
       approach: "Enfocament",
-      projects: "Treballs",
+      deliverables: "Lliurables",
       process: "Procés",
       contact: "Contacte",
     },
@@ -337,13 +267,34 @@ export const siteContent = {
         },
       ],
     },
-    projects: {
-      eyebrow: "Treballs seleccionats",
-      title: "Aquí hi haurà l'evidència, no només el discurs.",
-      intro: "He deixat preparades aquestes fitxes per afegir projectes reals amb imatge, context, solució tècnica i resultat.",
-      placeholder: "Afegeix aquí la imatge",
-      placeholderHint: "public/projects/…",
-      viewLabel: "Fitxa de projecte",
+    deliverables: {
+      eyebrow: "Què rebràs",
+      title: "Documentació útil des del primer encàrrec.",
+      intro: "El contingut final s'adapta a cada necessitat. Abans de començar quedaran definits l'abast, les revisions i els formats de lliurament.",
+      items: [
+        {
+          number: "01",
+          label: "Document tècnic",
+          title: "Plànols clars",
+          text: "Vistes, cotes, seccions i detalls organitzats per revisar, fabricar o muntar amb menys dubtes.",
+          formats: ["PDF", "DWG"],
+        },
+        {
+          number: "02",
+          label: "Control de peces",
+          title: "Especejaments ordenats",
+          text: "Peces identificades amb mides i referències coherents per facilitar-ne la preparació i el seguiment.",
+          formats: ["PDF", "Llistat"],
+        },
+        {
+          number: "03",
+          label: "Pas a producció",
+          title: "Arxius preparats",
+          text: "Documentació DWG/DXF revisada segons l'abast acordat per utilitzar-la al taller o en mecanitzat CNC.",
+          formats: ["DWG", "DXF", "CNC"],
+        },
+      ],
+      note: "Cada lliurament parteix d'una necessitat real: primer s'acorda i després es documenta.",
     },
     commitment: {
       eyebrow: "Compromís",
