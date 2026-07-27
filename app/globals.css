@@ -1,16 +1,16 @@
 :root {
   --ink: #173c2d;
   --ink-deep: #0d2b20;
-  --moss: #6d8261;
-  --sage: #b8c5ab;
-  --lime: #dcebb7;
-  --paper: #f2f0e7;
-  --paper-deep: #e8e5d9;
-  --white: #fbfaf6;
-  --clay: #c96f4b;
+  --moss: #66843f;
+  --sage: #b9c9a6;
+  --lime: #e0edbd;
+  --paper: #f5f1e7;
+  --paper-deep: #ebe6d8;
+  --white: #fffdf7;
+  --clay: #a76a42;
   --line: rgba(23, 60, 45, 0.18);
   --line-strong: rgba(23, 60, 45, 0.36);
-  --shadow: 0 28px 70px rgba(28, 47, 37, 0.12);
+  --shadow: 0 28px 70px rgba(28, 47, 37, 0.14);
   --max-width: 1440px;
   --pad: clamp(1.25rem, 4vw, 4.5rem);
 }
@@ -27,7 +27,15 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 14% 18%, rgba(220, 235, 183, 0.42), transparent 28rem),
+    radial-gradient(circle at 14% 18%, rgba(224, 237, 189, 0.48), transparent 28rem),
+    radial-gradient(circle at 87% 41%, rgba(185, 201, 166, 0.22), transparent 24rem),
+    repeating-linear-gradient(
+      0deg,
+      rgba(23, 60, 45, 0.018) 0,
+      rgba(23, 60, 45, 0.018) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
     var(--paper);
   color: var(--ink);
   font-family:
@@ -44,6 +52,11 @@ a {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 button:focus-visible,
@@ -74,6 +87,18 @@ a:focus-visible {
   transform: translateY(0);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .site-header {
   position: sticky;
   z-index: 20;
@@ -86,7 +111,7 @@ a:focus-visible {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
-  background: rgba(242, 240, 231, 0.88);
+  background: rgba(245, 241, 231, 0.9);
   backdrop-filter: blur(18px);
 }
 
@@ -273,6 +298,7 @@ main {
   border-radius: 50%;
   background: var(--clay);
   box-shadow: 0 0 0 0.3rem rgba(201, 111, 75, 0.12);
+  animation: eco-pulse 3.2s ease-in-out infinite;
 }
 
 h1,
@@ -386,6 +412,7 @@ h1 em::after {
 
 .blueprint-shell {
   position: relative;
+  isolation: isolate;
   width: min(100%, 31rem);
   justify-self: end;
 }
@@ -404,6 +431,7 @@ h1 em::after {
   top: -3.5rem;
   right: -2rem;
   background: var(--lime);
+  animation: eco-breathe 7s ease-in-out infinite;
 }
 
 .blueprint-shell::after {
@@ -416,6 +444,8 @@ h1 em::after {
   border-radius: 100% 0 100% 0;
   background: rgba(184, 197, 171, 0.72);
   transform: rotate(18deg);
+  animation: leaf-sway-small 5.5s ease-in-out infinite;
+  transform-origin: 50% 100%;
 }
 
 .blueprint-card {
@@ -430,6 +460,129 @@ h1 em::after {
   background-size: auto, 24px 24px, 24px 24px;
   box-shadow: var(--shadow);
   transform: rotate(1.2deg);
+}
+
+.eco-hero-card {
+  border-radius: 2.4rem 1rem 3rem 1.35rem;
+  background:
+    linear-gradient(rgba(255, 253, 247, 0.9), rgba(255, 253, 247, 0.9)),
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: auto, 24px 24px, 24px 24px;
+  animation: card-float 8s ease-in-out infinite;
+}
+
+.eco-orbit {
+  position: absolute;
+  z-index: -2;
+  border: 1px dashed color-mix(in srgb, var(--moss) 48%, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.eco-orbit-one {
+  width: 20rem;
+  height: 20rem;
+  top: 2rem;
+  left: -3rem;
+  animation: orbit-turn 26s linear infinite;
+}
+
+.eco-orbit-two {
+  width: 9rem;
+  height: 9rem;
+  right: -2.5rem;
+  bottom: 0.5rem;
+  animation: orbit-turn 18s linear infinite reverse;
+}
+
+.motion-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.motion-status > span {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #6fa33e;
+  box-shadow: 0 0 0 0.25rem rgba(111, 163, 62, 0.12);
+  animation: status-pulse 2.4s ease-out infinite;
+}
+
+.earth-stage {
+  position: relative;
+  display: grid;
+  min-height: 19rem;
+  margin: 0.8rem 0 1rem;
+  place-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line-strong);
+  background:
+    radial-gradient(circle at 50% 53%, rgba(224, 237, 189, 0.58), transparent 48%),
+    linear-gradient(135deg, rgba(185, 201, 166, 0.15), transparent 58%);
+}
+
+.earth-stage::before,
+.earth-stage::after {
+  position: absolute;
+  border: 1px dashed rgba(23, 60, 45, 0.22);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.earth-stage::before {
+  width: 74%;
+  aspect-ratio: 1;
+}
+
+.earth-stage::after {
+  width: 88%;
+  aspect-ratio: 1;
+  animation: orbit-turn 32s linear infinite;
+}
+
+.earth-stage picture {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 25rem);
+}
+
+.earth-stage img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.earth-stage-note {
+  position: absolute;
+  z-index: 2;
+  color: color-mix(in srgb, var(--ink) 65%, transparent);
+  font-family: "Courier New", monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.09em;
+}
+
+.earth-stage-note::before {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1px;
+  margin-right: 0.45rem;
+  vertical-align: middle;
+  background: var(--clay);
+  content: "";
+}
+
+.note-top {
+  top: 1rem;
+  left: 0.5rem;
+}
+
+.note-bottom {
+  right: 0.5rem;
+  bottom: 1rem;
 }
 
 .blueprint-head {
@@ -597,6 +750,117 @@ h1 em::after {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
+.eco-manifesto {
+  position: relative;
+  width: min(100%, var(--max-width));
+  margin: 0 auto;
+  padding: clamp(5.5rem, 9vw, 8.5rem) var(--pad) clamp(4.5rem, 8vw, 7.5rem);
+}
+
+.eco-manifesto::before,
+.eco-manifesto::after {
+  position: absolute;
+  border: 1px solid rgba(102, 132, 63, 0.34);
+  border-radius: 100% 0 100% 0;
+  background: rgba(224, 237, 189, 0.28);
+  content: "";
+  pointer-events: none;
+}
+
+.eco-manifesto::before {
+  width: 4.5rem;
+  height: 7.5rem;
+  top: 2.3rem;
+  right: 8%;
+  transform: rotate(62deg);
+  animation: leaf-sway-right 6s ease-in-out infinite reverse;
+}
+
+.eco-manifesto::after {
+  width: 2.8rem;
+  height: 4.8rem;
+  bottom: 2.2rem;
+  left: 4%;
+  transform: rotate(-28deg);
+  animation: leaf-sway-left 7s ease-in-out infinite;
+}
+
+.eco-manifesto-heading {
+  display: flex;
+  margin-bottom: 1.5rem;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.eco-manifesto-heading .eyebrow {
+  margin-bottom: 0;
+}
+
+.eco-manifesto-heading > p:last-child {
+  max-width: 32rem;
+  margin-bottom: 0;
+  color: color-mix(in srgb, var(--ink) 68%, transparent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-style: italic;
+  text-align: right;
+}
+
+.eco-manifesto-frame {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: clamp(0.45rem, 0.9vw, 0.8rem);
+  border: 1px solid var(--line-strong);
+  border-radius: 1.2rem 2.8rem 1.5rem 3.4rem;
+  background: var(--white);
+  box-shadow: 0 26px 70px rgba(28, 47, 37, 0.14);
+  transform: rotate(-0.25deg);
+  transition:
+    transform 420ms ease,
+    box-shadow 420ms ease;
+}
+
+.eco-manifesto-frame::before {
+  position: absolute;
+  z-index: 2;
+  inset: 0.45rem;
+  border: 1px solid rgba(23, 60, 45, 0.12);
+  border-radius: 0.8rem 2.3rem 1rem 2.9rem;
+  content: "";
+  pointer-events: none;
+}
+
+.eco-manifesto-frame:hover {
+  box-shadow: 0 34px 90px rgba(28, 47, 37, 0.18);
+  transform: rotate(0deg) translateY(-0.25rem);
+}
+
+.eco-manifesto-frame > img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem 2.2rem 0.9rem 2.8rem;
+  filter: saturate(0.94) contrast(1.015);
+  transition: transform 700ms ease;
+}
+
+.eco-manifesto-frame:hover > img {
+  transform: scale(1.012);
+}
+
+.eco-manifesto-frame figcaption {
+  display: flex;
+  padding: 0.75rem 0.5rem 0.15rem;
+  justify-content: space-between;
+  gap: 1rem;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  font-family: "Courier New", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .first-slice {
@@ -769,6 +1033,7 @@ h1 em::after {
   top: -1.5rem;
   right: 8%;
   transform: rotate(35deg);
+  animation: leaf-drift-one 8s ease-in-out infinite;
 }
 
 .leaf-two {
@@ -777,6 +1042,7 @@ h1 em::after {
   top: 6rem;
   right: 3%;
   transform: rotate(82deg);
+  animation: leaf-drift-two 9s ease-in-out infinite reverse;
 }
 
 .sustainability-intro {
@@ -1361,6 +1627,126 @@ h1 em::after {
   scroll-margin-top: 6rem;
 }
 
+@keyframes eco-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0.3rem rgba(167, 106, 66, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 0.52rem rgba(167, 106, 66, 0.04);
+  }
+}
+
+@keyframes eco-breathe {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.07);
+  }
+}
+
+@keyframes card-float {
+  0%,
+  100% {
+    transform: rotate(1.2deg) translateY(0);
+  }
+  50% {
+    transform: rotate(0.55deg) translateY(-0.55rem);
+  }
+}
+
+@keyframes orbit-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes status-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(111, 163, 62, 0.3);
+  }
+  65%,
+  100% {
+    box-shadow: 0 0 0 0.55rem rgba(111, 163, 62, 0);
+  }
+}
+
+@keyframes leaf-sway-small {
+  0%,
+  100% {
+    transform: rotate(15deg) translateY(0);
+  }
+  50% {
+    transform: rotate(23deg) translateY(-0.25rem);
+  }
+}
+
+@keyframes leaf-sway-right {
+  0%,
+  100% {
+    transform: rotate(58deg) translateY(0);
+  }
+  50% {
+    transform: rotate(67deg) translateY(-0.35rem);
+  }
+}
+
+@keyframes leaf-sway-left {
+  0%,
+  100% {
+    transform: rotate(-32deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-23deg) translateY(-0.3rem);
+  }
+}
+
+@keyframes leaf-drift-one {
+  0%,
+  100% {
+    transform: rotate(31deg) translateY(0);
+  }
+  50% {
+    transform: rotate(39deg) translateY(0.45rem);
+  }
+}
+
+@keyframes leaf-drift-two {
+  0%,
+  100% {
+    transform: rotate(78deg) translateY(0);
+  }
+  50% {
+    transform: rotate(87deg) translateY(-0.35rem);
+  }
+}
+
+@keyframes eco-reveal {
+  from {
+    opacity: 0.2;
+    translate: 0 2.2rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .service-card,
+  .deliverable-card,
+  .commitment-points article,
+  .process-list li {
+    animation: eco-reveal both linear;
+    animation-timeline: view();
+    animation-range: entry 8% cover 28%;
+  }
+}
+
 @media (max-width: 980px) {
   .desktop-nav {
     display: none;
@@ -1374,6 +1760,15 @@ h1 em::after {
   .blueprint-shell {
     width: min(100%, 38rem);
     justify-self: start;
+  }
+
+  .eco-manifesto-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .eco-manifesto-heading > p:last-child {
+    text-align: left;
   }
 
   .section-heading,
@@ -1454,6 +1849,14 @@ h1 em::after {
     margin-inline: 0.4rem;
   }
 
+  .earth-stage {
+    min-height: 17rem;
+  }
+
+  .earth-stage-note {
+    display: none;
+  }
+
   .principles {
     grid-template-columns: 1fr;
   }
@@ -1472,6 +1875,30 @@ h1 em::after {
   .first-slice {
     min-height: auto;
     padding-block: 5.5rem;
+  }
+
+  .eco-manifesto {
+    padding-block: 4.8rem;
+  }
+
+  .eco-manifesto::before {
+    right: 3%;
+  }
+
+  .eco-manifesto-frame {
+    border-radius: 0.85rem 1.6rem 0.95rem 1.9rem;
+    transform: none;
+  }
+
+  .eco-manifesto-frame::before,
+  .eco-manifesto-frame > img {
+    border-radius: 0.55rem 1.25rem 0.65rem 1.5rem;
+  }
+
+  .eco-manifesto-frame figcaption {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .section {
@@ -1620,6 +2047,8 @@ h1 em::after {
   *,
   *::before,
   *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
